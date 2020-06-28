@@ -45,4 +45,4 @@ target/
 *.iws
 
 # test ignore
-*/test/*
+test/
