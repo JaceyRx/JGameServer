@@ -1,0 +1,135 @@
+syntax = "proto3";
+package com.jacey.game.common.proto3;
+
+option optimize_for = SPEED;
+
+import "common_enum.proto";
+
+// 在线玩家详情
+message OnlineUserInfo {
+    int32 userId = 1;					// 玩家id
+    string username = 3;				// 用户名
+    string nickname = 4;				// 昵称
+    UserState userState = 5;			// 玩家状态
+    int32 sessionId = 6;				// sessionId
+    int32 connectGatewayId = 7;		    // 连接网关服务器id
+    int32 connectLogicServerId = 8;	    // 连接逻辑服务器id
+    int32 connectBattleServerId = 9;	// 连接战斗服务器id
+    int64 loginedTimestamp = 10;		// 登录时间戳
+}
+
+// 玩家状态
+message UserState {
+    UserOnlineStateEnum onlineState = 1;		// 玩家在线状态
+    UserActionStateEnum actionState = 2;		// 玩家行为状态
+    BattleTypeEnum battleType = 3;  		 	// 如果action是匹配或者对战，存储对战类型
+    string battleId = 4;            			// 如果action是对战，存储对局id
+}
+
+// 玩家信息（玩家自己可查看的信息）
+message UserInfo {
+    int32 userId = 1;          // 用户id
+    string username = 2;       // 用户名
+    string nickname = 3;       // 昵称
+    UserState userState = 6;   // 在线以及行为状态
+}
+
+// 玩家简略信息（其他玩家可查看的信息）
+message UserBriefInfo {
+    int32 userId = 1;          // 用户id
+    string nickname = 2;       // 昵称
+    UserState userState = 5;   // 在线以及行为状态
+}
+
+// 玩家信息存储
+message UserData {
+    int32 userId = 1;
+    string username = 2;
+    string passwordMD5 = 3;          // MD5加密后的密码
+    string nickname = 4;             // 昵称
+    int64 registTimestamp = 7;       // 注册时间戳
+    string registIp = 8;             // 注册IP
+    int64 lastLoginTimestamp = 9;    // 上次登录的时间戳
+    string lastLoginIp = 10;         // 上次登录的IP
+    UserForbidInfo forbidInfo = 11;  // 如果有此字段，说明玩家账号被封禁
+}
+
+// 玩家被封禁信息
+message UserForbidInfo {
+    UserForbidReasonEnum forbidReason = 1;
+    int64 forbidStartTimestamp = 2;  // 封禁开始时间
+    int64 forbidEndTimestamp = 3;    // 封禁结束时间
+}
+
+// 注册（Regist = 101）
+message RegistRequest {
+    string username = 1;       // 用户名
+    string password = 4;       // 原始明文密码，是为了服务器校验密码长度、复杂度等是否合法，校验通过后需进行MD5加密存储
+}
+
+message RegistResponse {
+}
+
+// 登录（Login = 102）
+message LoginRequest {
+    string username = 1;       // 用户名
+    string passwordMD5 = 2;    // MD5加密后的密码
+}
+
+// 登录响应
+message LoginResponse {
+    UserInfo userInfo = 1;
+    int64 timestamp = 2;       // 服务器时间戳（距离1970年的毫秒数）
+}
+
+// 对战匹配（Match = 111）
+message MatchRequest {
+    BattleTypeEnum battleType = 1;		// 对战类型
+}
+
+message MatchResponse {}
+
+// 取消对战匹配（CancelMatch = 112）
+message CancelMatchRequest {}
+message CancelMatchResponse {}
+
+
+// 加入对战聊天室请求（JoinChatRoom = 10001）
+message JoinChatRoomRequest {
+    ChatRoomTypeEnum chatRoomType = 1;
+}
+message JoinChatRoomResponse {}
+
+// 对战聊天文本发送(BattleChatText = 10002)
+message BattleChatTextSendRequest {
+    ChatRoomTypeEnum chatRoomType = 1;                // 聊天室里类型
+    BattleChatTextScopeEnum battleChatTextScope = 2; // 作用域 队友or所有人
+    int64 sendTimestamp = 4;                         // 发送时间
+    string text = 3;                                 // 文本
+}
+message BattleChatTextSendResponse {}
+
+
+// ====================推送相关===========================
+
+// 强制下线推送（ForceOfflinePush = 20001）
+message ForceOfflinePush {
+    ForceOfflineReasonEnum forceOfflineReason = 1;
+}
+
+// 主逻辑服务器推送给玩家匹配结果（MatchResultPush = 21001）
+message MatchResultPush {
+    bool isSuccess = 1;				// 是否匹配成功
+    BattleTypeEnum battleType = 2;		// 对战类型
+    string battleId = 3;				// 对战服务器id
+    repeated UserBriefInfo userBriefInfos = 4;  // 玩家简略信息（按行动顺序排列）
+}
+
+// 聊天服务器推送对战聊天文本（BattleChatTextPush = 23001）
+message BattleChatTextPush {
+    int32 senderUserId = 1;
+    BattleChatTextScopeEnum battleChatTextScope = 2; // 作用域 队友or所有人
+    string text = 3;                                 // 文本
+    int64 sendTimestamp = 4;                         // 发送时间
+}
+

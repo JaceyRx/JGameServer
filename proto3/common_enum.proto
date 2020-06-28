@@ -1,0 +1,62 @@
+syntax = "proto3";
+package com.jacey.game.common.proto3;
+
+option optimize_for = SPEED;
+
+// 服务器类型
+enum RemoteServerTypeEnum {
+    ServerTypeLogic = 0;
+    ServerTypeBattle = 1;
+    ServerTypeGateway = 2;
+    ServerTypeGm = 3;
+    ServerTypeChat = 4;
+}
+
+// GM命令类型
+enum GmCmdTypeEnum {
+    GmCmdReloadTableConfig = 0;    	// GM命令 重新加载配置表格
+    GmCmdCloseServer = 1;			// GM命令 关服
+}
+
+// 玩家在线状态
+enum UserOnlineStateEnum {
+    Offline = 0;
+    Online = 1;
+}
+
+// 玩家行为状态
+enum UserActionStateEnum {
+    ActionNone = 0;
+    Matching = 1;                       // 匹配中
+    Playing = 2;                        // 对战中
+}
+
+// 对战类型
+enum BattleTypeEnum {
+    NoneType = 0;
+    BattleTypeTwoPlayer = 1;                  // 1V1
+}
+
+
+// 玩家被封禁原因
+enum UserForbidReasonEnum {
+    UserForbidReasonGmOperate = 0;            // GM管理员手工操作封禁
+    UserForbidReasonCheat = 1;                // 服务器发现明显只能是玩家破解、伪造数据包进行请求时，自动封禁
+}
+
+
+// 被强制下线的原因
+enum ForceOfflineReasonEnum {
+    ForceOfflineServerNotAvailable = 0;     // 服务器不可用
+    ForceOfflineSameUserLogin = 1;          // 同一账号同时异地登录，踢掉之前登录的
+}
+
+// 聊天室类型
+enum ChatRoomTypeEnum {
+    TwoPlayerBattleChatRoomType = 0;   // 1v1对战聊天室
+}
+// 对战聊天文本作用域
+enum BattleChatTextScopeEnum {
+    TeammateScope = 0;  // 队友
+    EveryoneScope = 1;  // 所有人（战局中的所有人。包括对手、队友）
+}
