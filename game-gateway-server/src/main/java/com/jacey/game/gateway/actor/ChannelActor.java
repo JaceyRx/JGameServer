@@ -138,9 +138,7 @@ public class ChannelActor extends UntypedAbstractActor {
                 case Rpc.RpcNameEnum.GetBattleInfo_VALUE:				// 对战相关
                 case Rpc.RpcNameEnum.Concede_VALUE:						// 投降认输
                 case Rpc.RpcNameEnum.PlacePieces_VALUE:					// 落子
-                case Rpc.RpcNameEnum.ForceEndTurn_VALUE:				// 客户端发现当前回合玩家超时未行动，请求服务器强制结束回合
-                case Rpc.RpcNameEnum.ReadyToStartGame_VALUE:			// 确认可以开始游戏、超时未确认可以开始游戏，则强制开始游戏
-                case Rpc.RpcNameEnum.ForceReadyToStartGame_VALUE: {		// 超时未确认可以开始游戏，则强制开始游戏
+                case Rpc.RpcNameEnum.ReadyToStartGame_VALUE: {		    // 确认可以开始游戏、超时未确认可以开始游戏，则强制开始游戏
                     // 只有登录成功，才能发起该操作
                     if (userId > 0) {
                         // 获取userId对应的battleId(用于判断该用户是否在对战中)

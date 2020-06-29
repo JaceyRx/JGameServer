@@ -89,8 +89,7 @@ public class BattleRoomManagerActor extends BaseMessageActor {
      * @throws Exception
      */
     @MessageMethodMapping(value = { Rpc.RpcNameEnum.GetBattleInfo_VALUE, Rpc.RpcNameEnum.Concede_VALUE,
-            Rpc.RpcNameEnum.PlacePieces_VALUE, Rpc.RpcNameEnum.ForceEndTurn_VALUE, Rpc.RpcNameEnum.ReadyToStartGame_VALUE,
-            Rpc.RpcNameEnum.ForceReadyToStartGame_VALUE }, isNet = true)
+            Rpc.RpcNameEnum.PlacePieces_VALUE, Rpc.RpcNameEnum.ReadyToStartGame_VALUE}, isNet = true)
     public void proxyNetMessageInvoke(IMessage message) throws Exception {
         NetMessage netMessage = (NetMessage) message;
         int sessionId = netMessage.getSessionId();
