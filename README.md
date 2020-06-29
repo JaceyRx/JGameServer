@@ -35,6 +35,16 @@
 
 ## 快速开始
 
+```
+1. git clone https://github.com/JaceyRx/JGameServer.git
+2. 创建名为 jgame_server 的 Mysql 数据库,并导入 doc/sql 目录下的.sql文件
+3. 分别修改各 Server 模块的下的 config.properties (修改gm服务器所在服务器IP与当前服务器IP)
+4. 分别修改各 Server 模块的下的 application.yml (修改Mysql的连接地址信息)
+5. 分别修改各 Server 模块的下的 redis.properties (修改Redis的连接地址信息)
+6. [首次运行]-到 release/ 目录下 运行 build-first-build.bat 首次启动编译脚本
+7. 运行 release/ 目录下的 build-server-module.bat 脚本，编译各Server模块
+8. 运行 release/ 目录下的 onekey run.bat 脚本，一键启动各服务器
+```
 
 ## TODO List
 - 独立的登录服务器
