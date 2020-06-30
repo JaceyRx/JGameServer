@@ -87,7 +87,6 @@
 
     <build>
         <finalName>gatewayServer</finalName>
-        <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <!-- 控制资源文件的拷贝 -->
             <resource>
@@ -104,15 +103,11 @@
             </resource>
         </resources>
         <plugins>
-            <!--            <plugin>-->
-            <!--                <groupId>org.springframework.boot</groupId>-->
-            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--            </plugin>-->
-
             <!-- 设置编译版本 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -141,40 +136,12 @@
                     </classesDirectory>
                 </configuration>
             </plugin>
-            <!-- 拷贝依赖的jar包到lib目录 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>
-                                ${project.build.directory}/lib
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- 解决资源文件的编码问题 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
             <!-- 打包source文件为jar文件 -->
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
                     <attach>true</attach>
-                    <!--                    <encoding>UTF-8</encoding>-->
                 </configuration>
                 <executions>
                     <execution>
@@ -184,6 +151,11 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
