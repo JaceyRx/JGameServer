@@ -1,4 +1,5 @@
 ## 概览
+
 ![概览](https://github.com/JaceyRx/JGameServer/blob/master/doc/img/game.png "概览")
 
 ## 模块组织结构
@@ -48,9 +49,16 @@
 
 ## TODO List
 - 独立的登录服务器
-- 独立的注册中心（高可用、分布式部署）
+- 独立的注册中心
 - Gm后台管理Web界面
 - 事件驱动模型的实现
 
-## 文档
-[WIKI](http://xxx "WIKI")
+## Tips
+ ```
+ 1. 开发环境是 JDK1.8 高于或低于该版本JDK可能会无法运行
+ 2. 请使用IDEA 打开项目
+ ```
+## 测试客户端地址
+[TicTacToe-GUI](https://github.com/JaceyRx/TicTacToe-GUI "TicTacToe-GUI")
+
+![客户端演示](https://github.com/JaceyRx/JGameServer/blob/master/doc/img/client.gif "客户端演示")
