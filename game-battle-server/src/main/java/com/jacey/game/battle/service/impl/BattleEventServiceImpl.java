@@ -297,6 +297,9 @@ public class BattleEventServiceImpl implements BattleEventService {
         CurrentTurnInfo newCurrentTurnInfo = currentTurnInfoBuilder.build();
         // 保存下一个回合信息
         battleInfoService.setBattleCurrentTurnInfo(battleId, newCurrentTurnInfo);
+        // 响应信息
+        startTurnEventBuilder.setCurrentTurnInfo(currentTurnInfoBuilder);
+        eventBuilder.setStartTurnEvent(startTurnEventBuilder);
 
         return null;
     }
@@ -354,7 +357,6 @@ public class BattleEventServiceImpl implements BattleEventService {
             // 游戏尚未结束，下一个事件为回合结束事件
             EndTurnEvent.Builder endTurnEventBuilder = EndTurnEvent.newBuilder();
             endTurnEventBuilder.setEndTurnUserId(userId);  	// 当前用户结束回合
-            endTurnEventBuilder.setIsForceEndTurn(false);	// 是否因为超时，由系统强制结束回合
             // 构造一个事件消息
             EventMsg.Builder eventMsgBuilder = buildOneEvent(battleId, EventTypeEnum.EventTypeEndTurn,
                     endTurnEventBuilder);
