@@ -1,6 +1,6 @@
 ## 概览
 ![概览](https://github.com/JaceyRx/JGameServer/blob/master/doc/img/game.png "概览")
-
+![客户端演示](https://github.com/JaceyRx/JGameServer/blob/master/doc/img/client.gif "客户端演示")
 ## 模块组织结构
 
 ``` 
