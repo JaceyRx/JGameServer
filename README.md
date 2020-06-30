@@ -1,7 +1,6 @@
 ## 概览
 
 ![概览](https://github.com/JaceyRx/JGameServer/blob/master/doc/img/game.png "概览")
-![客户端演示](https://github.com/JaceyRx/JGameServer/blob/master/doc/img/client.gif "客户端演示")
 
 ## 模块组织结构
 
@@ -61,3 +60,5 @@
  ```
 ## 测试客户端地址
 [TicTacToe-GUI](https://github.com/JaceyRx/TicTacToe-GUI "TicTacToe-GUI")
+
+![客户端演示](https://github.com/JaceyRx/JGameServer/blob/master/doc/img/client.gif "客户端演示")
