@@ -41,7 +41,7 @@
         <commons-beanutils.version>1.8.0</commons-beanutils.version>
         <guava.version>25.1-jre</guava.version>
         <netty.version>4.1.13.Final</netty.version>
-        <jackson.version>2.9.2</jackson.version>
+        <jackson.version>2.12.6.1</jackson.version>
         <poi.version>3.14</poi.version>
     </properties>
 
